@@ -1,0 +1,26 @@
+(hall-description
+  (name "guile-utils")
+  (prefix "")
+  (version "0.1")
+  (author "Tim Van den Langenbergh")
+  (copyright (2021))
+  (synopsis "")
+  (description "")
+  (home-page "")
+  (license gpl3+)
+  (dependencies `())
+  (files (libraries
+           ((scheme-file "guile-utils")
+            (directory "guile-utils" ())))
+         (tests ((directory "tests" ())))
+         (programs ((directory "scripts" ())))
+         (documentation
+           ((org-file "README")
+            (symlink "README" "README.org")
+            (text-file "HACKING")
+            (text-file "COPYING")
+            (directory "doc" ((texi-file "guile-utils")))))
+         (infrastructure
+           ((scheme-file "guix")
+            (text-file ".gitignore")
+            (scheme-file "hall")))))
