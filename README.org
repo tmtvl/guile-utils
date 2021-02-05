@@ -2,3 +2,35 @@
 
 #+TITLE: README for Guile-Utils
 
+* Description
+
+  Guile-Utils is a library containing various useful procedures for solving
+  (more-or-less) common problems.
+
+* Usage
+
+  After installing the package you can simply import it like so:
+
+  #+begin_src scheme
+	(import (utils))
+
+	(prime? 561)
+  #+end_src
+
+* License
+
+  Guile-Utils - Miscellaneous utility functions for GNU Guile.
+  Copyright (C) 2021 Tim Van den Langenbergh ([[mailto:tmt_vdl@gmx.com][tmt_vdl@gmx.com]])
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but without ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see [[https://www.gnu.org/licenses/]].
