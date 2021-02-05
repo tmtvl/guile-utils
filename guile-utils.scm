@@ -25,7 +25,7 @@
 	  (* n n))
 
 	(define (triviality-check em)
-	  (let ((w (remainder (square em) x)))
+	  (let ((w (mod (square em) x)))
 		(if (and (= w 1)
 				 (not (or (= em 1)
 						  (= em (- x 1)))))
@@ -37,7 +37,7 @@
 			((even? exp)
 			 (triviality-check (expmod base (/ exp 2))))
 			(else
-			 (remainder
+			 (mod
 			  (* base (expmod base (- exp 1)))
 			  x))))
 
