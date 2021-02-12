@@ -13,11 +13,26 @@
 
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
-(library (utils (1 0 0))
-  (export prime?
-		  next-prime)
+(library (utils (1 1 0))
+  (export sorted-insert
+		  prime?
+		  next-prime
+		  pick
+		  shuffle)
   (import (rnrs (6))
 		  (srfi srfi-27))
+
+  (define (sorted-insert cmp a d)
+	"Insert a value into a list via comparison with provided function."
+	(cond ((or (not (pair? d))
+			   (cmp a (car d)))
+		   (cons a d))
+		  ((cmp (car d) a)
+		   (cons (car d)
+				 (insert-in-list cmp
+								 a
+								 (cdr d))))
+		  (else d)))
 
   (define (prime? x)
 	"Rabin-Miller primality check."
@@ -65,4 +80,58 @@
 		(let np ((x (+ n 1)))
 		  (if (prime? x)
 			  x
-			  (np (+ x 1)))))))
+			  (np (+ x 1))))))
+
+  (define (pick lst n)
+	"Pick N random elements from list LST.
+
+If N is less than the total amount of elements in LST, each element will only
+be picked once."
+
+	(define (do-pick pick-from lst-rem result elt to-pick)
+	  (cond ((zero? to-pick) result)
+			((null? pick-from)
+			 (do-pick (if (null? lst-rem)
+						  lst
+						  lst-rem)
+					  '()
+					  result
+					  (if (zero? elt)
+						  (random-integer (length lst))
+						  elt)
+					  to-pick))
+			((zero? elt)
+			 (do-pick (cdr pick-from)
+					  lst-rem
+					  (cons (car pick-from) result)
+					  (random-integer (if (and (null? (cdr pick-from))
+											   (null? lst-rem))
+										  (length lst)
+										  (+ (length (cdr pick-from))
+											 (length lst-rem))))
+					  (1- to-pick)))
+			(else
+			 (do-pick (cdr pick-from)
+					  (cons (car pick-from) lst-rem)
+					  result
+					  (1- elt)
+					  to-pick))))
+
+	(cond ((negative? n)
+		   (error 'pick
+				  "Cannot create a list of negative length."
+				  n))
+		  ((or (null? lst)
+			   (zero? n))
+		   '())
+		  (else
+		   (do-pick lst
+					'()
+					'()
+					(random-integer (length lst))
+					n))))
+
+  (define (shuffle lst)
+	"Shuffle the provided list LST."
+
+	(pick lst (length lst))))

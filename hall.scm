@@ -1,18 +1,21 @@
 (hall-description
-  (name "guile-utils")
-  (prefix "")
-  (version "0.1")
+  (name "utils")
+  (prefix "guile")
+  (version "1.1.0")
   (author "Tim Van den Langenbergh")
   (copyright (2021))
-  (synopsis "Miscellaneous utilities for GNU Guile.")
-  (description "Various useful functions for common problems.")
+  (synopsis
+    "Miscellaneous utilities for GNU Guile.")
+  (description
+    "Various useful functions for common problems.")
   (home-page "")
   (license gpl3+)
   (dependencies `())
   (files (libraries
-          ((scheme-file "utils")))
-		 (programs ((directory "scripts" ())))
+           ((scheme-file "guile-utils")
+			(scheme-file "utils")))
          (tests ((directory "tests" ())))
+         (programs ((directory "scripts" ())))
          (documentation
            ((org-file "README")
             (symlink "README" "README.org")
@@ -20,6 +23,4 @@
             (text-file "COPYING")
             (directory "doc" ((texi-file "guile-utils")))))
          (infrastructure
-           ((scheme-file "guix")
-            (text-file ".gitignore")
-            (scheme-file "hall")))))
+           ((scheme-file "guix") (scheme-file "hall")))))
