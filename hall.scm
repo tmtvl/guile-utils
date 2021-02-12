@@ -12,8 +12,7 @@
   (license gpl3+)
   (dependencies `())
   (files (libraries
-           ((scheme-file "guile-utils")
-			(scheme-file "utils")))
+           ((scheme-file "utils")))
          (tests ((directory "tests" ())))
          (programs ((directory "scripts" ())))
          (documentation
@@ -21,6 +20,6 @@
             (symlink "README" "README.org")
             (text-file "HACKING")
             (text-file "COPYING")
-            (directory "doc" ((texi-file "guile-utils")))))
+            (directory "doc" ((texi-file "utils")))))
          (infrastructure
            ((scheme-file "guix") (scheme-file "hall")))))

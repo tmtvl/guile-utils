@@ -29,9 +29,9 @@
 		   (cons a d))
 		  ((cmp (car d) a)
 		   (cons (car d)
-				 (insert-in-list cmp
-								 a
-								 (cdr d))))
+				 (sorted-insert cmp
+								a
+								(cdr d))))
 		  (else d)))
 
   (define (prime? x)
@@ -109,12 +109,12 @@ be picked once."
 										  (length lst)
 										  (+ (length (cdr pick-from))
 											 (length lst-rem))))
-					  (1- to-pick)))
+					  (- to-pick 1)))
 			(else
 			 (do-pick (cdr pick-from)
 					  (cons (car pick-from) lst-rem)
 					  result
-					  (1- elt)
+					  (- elt 1)
 					  to-pick))))
 
 	(cond ((negative? n)

@@ -12,8 +12,8 @@
 
 (package
   (name "guile-utils")
-  (version "0.1")
-  (source "./guile-utils-0.1.tar.gz")
+  (version "1.1.0")
+  (source "./guile-utils-1.1.0.tar.gz")
   (build-system gnu-build-system)
   (arguments `())
   (native-inputs
