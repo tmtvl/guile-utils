@@ -13,14 +13,17 @@
 
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
-(library (utils (1 1 0))
+(library (utils (1 2 0))
   (export sorted-insert
+		  reverse-append
 		  prime?
 		  next-prime
 		  pick
-		  shuffle)
+		  shuffle
+		  permute)
   (import (rnrs (6))
-		  (srfi srfi-27))
+		  (srfi srfi-27)
+		  (srfi srfi-41))
 
   (define (sorted-insert cmp a d)
 	"Insert a value into a list via comparison with provided function."
@@ -33,6 +36,13 @@
 								a
 								(cdr d))))
 		  (else d)))
+
+  (define (reverse-append x y)
+	"Put the elements of list X backwards in front of those of list Y."
+	(if (null? x)
+		y
+		(reverse-append (cdr x)
+						(cons (car x) y))))
 
   (define (prime? x)
 	"Rabin-Miller primality check."
@@ -134,4 +144,22 @@ be picked once."
   (define (shuffle lst)
 	"Shuffle the provided list LST."
 
-	(pick lst (length lst))))
+	(pick lst (length lst)))
+
+  (define-stream (find-permutations lst rem res)
+	(if (null? lst)
+		(if (or (null? res)
+				(not (null? rem)))
+			stream-null
+			(stream (reverse res)))
+		(stream-append
+		 (find-permutations (reverse-append rem (cdr lst))
+							'()
+							(cons (car lst) res))
+		 (find-permutations (cdr lst)
+							(cons (car lst) rem)
+							res))))
+
+  (define (permute lst)
+	"Return a stream of permutations of list LST."
+	(find-permutations lst '() '())))

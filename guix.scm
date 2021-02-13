@@ -12,8 +12,8 @@
 
 (package
   (name "guile-utils")
-  (version "1.1.0")
-  (source "./guile-utils-1.1.0.tar.gz")
+  (version "1.2.0")
+  (source "./guile-utils-1.2.0.tar.gz")
   (build-system gnu-build-system)
   (arguments `())
   (native-inputs
@@ -23,8 +23,8 @@
       ("texinfo" ,texinfo)))
   (inputs `(("guile" ,guile-3.0)))
   (propagated-inputs `())
-  (synopsis "")
-  (description "")
+  (synopsis "Miscellaneous utilities for GNU Guile.")
+  (description "Various useful functions for common problems.")
   (home-page "")
   (license license:gpl3+))
 

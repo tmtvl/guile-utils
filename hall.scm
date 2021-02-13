@@ -1,7 +1,7 @@
 (hall-description
   (name "utils")
   (prefix "guile")
-  (version "1.1.0")
+  (version "1.2.0")
   (author "Tim Van den Langenbergh")
   (copyright (2021))
   (synopsis
